@@ -1,0 +1,15 @@
+---
+- hosts: all
+  ignore_errors: yes
+  become: yes
+  tasks:
+    - name: patching of CentOs servers
+      yum:
+       name: '*'
+       state: latest
+      when: ansible_distribution == "CentOS"
+    - name: patching of Ubuntu servers
+      apt:
+        name: '*'
+        state: latest
+      when: ansible_distribution == "Ubuntu"
